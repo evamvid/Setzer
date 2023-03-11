@@ -41,7 +41,7 @@ class ParserBibTeX(object):
     #@timer
     def parse_symbols(self, text):
         bibitems = set()
-        for match in ServiceLocator.get_regex_object(r'@(\w+)\{(\w+)').finditer(text):
+        for match in ServiceLocator.get_regex_object(r'@(\w+)\{([\w\p{Pd}<>^:\/.]+)').finditer(text):
             bibitems = bibitems | {match.group(2).strip()}
 
         self.document.symbols['bibitems'] = bibitems
